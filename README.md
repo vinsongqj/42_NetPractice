@@ -6,8 +6,31 @@
 
 NetPractice is a project focused on understanding TCP/IP addressing works in a network that includes routers and switches, where learners have to complete 10 levels, each with a non-functioning network diagram displayed. The goal of each level is to adjust the available configuration so that the network functions properly.
 
+### TCP/IP and OSI Models ###
+
+Transmission Control Protocol (TCP) and OSI (Open Systems Interconnection) are frameworks for organizing networking into layers, with the former being the real world architecture and the latter being a teaching/reference model. Layers are counted from the bottom up.
+  ```
+                                                   TCP                OSI
+                                                
+            Covers the first 3 OSI layers  ——  Application        Application  —— Creates the data (HTTP, FTP, SMTP)
+                                                    |                  |
+                                  TCP, UDP  ——  Transport         Presentation  —— Encrypts or formats data for the receiving device
+                                                    |                  |
+            Finds address using IP, Routers  ——  Network            Session  ——    Maintains connection between two devices
+                                                    |                  |
+           Ethernet, Switches, MAC Address  ——  Data Link          Transport  ——  Navigates to the app asking for or sending the data (TCP, UDP)
+                                                    |                  |
+                                     Cables  ——  Physical           Network  ——  Finds address using IP, Routers
+                                                                       |
+                                                                   Data Link ——  Ethernet, Switches, MAC Address
+                                                                       |
+                                                                    Physical  ——  Cables
+
+```
+When transferring data from one host to another, every layer adds its own bit of information from the application down to the physical layer, which is called **encapsulation**. Likewise, when data is received by another host, data will be slowly unpacked up to the application layer, known as **decapsulation**. Basically, data is transferred from one host to another through the physical layer because that's where the cables are.
+
 ### IP Addresses and Subnet Masks ###
-- **IP address** - Short for Internet Protocol addresses, they are separated into two parts - a network address and a host address, and the part that belongs to each is determined by a subnet mask.  An example of an IP address is `192.168.0.2`.
+- **IP address** - Short for Internet Protocol addresses, they are separated into two parts - a network address and a host address, and the part that belongs to each is determined by a subnet mask. NetPractice only covers IPv4 addresses. An example of an IP address is `192.168.0.2`.
 - **Subnet mask** - A subnet mask reveals how many bits in an IP address are used for the network by masking the respective portion of the address. An example would be `255.255.255.0`.
 
 Visual demonstration:
@@ -52,6 +75,9 @@ The .json config files created for each of the 10 levels are required to be incl
 
 ## Resources
 
+- [CertBros - OSI Model Explained | Real World Example](https://youtu.be/LANW3m7UgWs?si=KruXDKflZIFPVfLN)
+- [CertBros - TCP/IP Model Explained | Cisco CCNA 200-301](https://youtu.be/OTwp3xtd4dg?si=3Snwca5KhppTxDvr)
 - [Drunk Engineer - OSI and TCP IP Models - Best Explanation](https://youtu.be/3b_TAYtzuho?si=kVmebpFOe0FM2muy)
 - [QSFPTEK- Router vs Switch, Whats the Difference?](https://youtu.be/AjOyXHWG_x0?si=HCeaQxNtvGws2M7e)
 - [PowerCert Animated Videos - Default Gateway Explained](https://youtu.be/pCcJFdYNamc?si=-hPc9t30WpoEPSrk)
+- [Sunny Classroom - subnetting is simple](https://youtu.be/ecCuyq-Wprc?si=ITWq0Tku3mSKx-LV)
