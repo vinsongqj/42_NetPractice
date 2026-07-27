@@ -6,6 +6,33 @@
 
 NetPractice is a project focused on understanding TCP/IP addressing works in a network that includes routers and switches, where learners have to complete 10 levels, each with a non-functioning network diagram displayed. The goal of each level is to adjust the available configuration so that the network functions properly.
 
+### IP Addresses and Subnet Masks ###
+- **IP address** - Short for Internet Protocol addresses, they are separated into two parts - a network address and a host address, and the part that belongs to each is determined by a subnet mask.  An example of an IP address is `192.168.0.2`.
+- **Subnet mask** - A subnet mask reveals how many bits in an IP address are used for the network by masking the respective portion of the address. An example would be `255.255.255.0`.
+
+Visual demonstration:
+```
+IP address        Binary representation (Total 32 bits)
+192.168.0.2       11000000.10101000.00000000.00000010
+                           Network             
+Subnet mask       |||||||| |||||||| ||||||||   Host
+255.255.255.0     11111111.11111111.11111111.00000000
+                      └── Each segment that is separated by a '.' is called an octet
+```
+
+Essentially this means that hosts ``192.168.0.1, 192.168.0.2, 192.168.0.3...`` exist on the `192.168.0` network while remaining number is reserved for their resepective host addresses.
+
+**CIDR notation** - Classless Inter-Domain Routing (CIDR) is a simplified way of writing subnet masks. The subnet mask `255.255.255.0` can be represented as `/24` which means 24 bits are used for the network and the remaining 8 are used for the host. The quickest way to calculate how many usable addresses a mask gives is `2^(32-CIDR number)`. With `/24` that means you have 2⁸ = 256 addresses. To represent an IP address along with its subnet mask it can be written for example as `192.168.1.0/24`.
+
+### Switches ###
+A switch connects multiple devices on a single network which it cannot communicate outside of. They work on OSI layer 2, which is the data link layer, and exchange data based on MAC addresses.
+
+### Routers ###
+A router is a device that connects two different networks, acting as a gateway for a host on one network to communicate with a host on a separate network. They work on the OSI layer 3, which is the network layer, and forward data based on IP addresses.
+
+### Default gateways ###
+In most cases, a default gateway is the same thing as a router. It connects devices from two different networks, allowing them to communicate with each other. 'Default' just means that when data needs to exit a network, it is the first to be designated device to be looked at.
+
 ## Instructions
 
 A training interface is provided on the student intra project page as well as during evaluations and requires a 42 student login to be accessed.
@@ -25,3 +52,6 @@ The .json config files created for each of the 10 levels are required to be incl
 
 ## Resources
 
+- [Drunk Engineer - OSI and TCP IP Models - Best Explanation](https://youtu.be/3b_TAYtzuho?si=kVmebpFOe0FM2muy)
+- [QSFPTEK- Router vs Switch, Whats the Difference?](https://youtu.be/AjOyXHWG_x0?si=HCeaQxNtvGws2M7e)
+- [PowerCert Animated Videos - Default Gateway Explained](https://youtu.be/pCcJFdYNamc?si=-hPc9t30WpoEPSrk)
