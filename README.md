@@ -47,6 +47,29 @@ Essentially this means that hosts ``192.168.0.1, 192.168.0.2, 192.168.0.3...`` e
 
 **CIDR notation** - Classless Inter-Domain Routing (CIDR) is a simplified way of writing subnet masks. The subnet mask `255.255.255.0` can be represented as `/24` which means 24 bits are used for the network and the remaining 8 are used for the host. The quickest way to calculate how many usable addresses a mask gives is `2^(32-CIDR number)`. With `/24` that means you have 2⁸ = 256 addresses. To represent an IP address along with its subnet mask it can be written for example as `192.168.1.0/24`.
 
+| Subnet | Host | Subnet Mask | 
+| :--- | :--- | :--- |
+| 1 | 256 | /24 |
+| 2 | 128 | /25 |
+| 4 | 64 | /26 |
+| 8 | 32 | /27 |
+| 16 | 16 | /28 |
+| 32 | 8 | /29 |
+| 64 | 4 | /30 |
+| 128 | 2 | /31 |
+| 256 | 1 | /32 |
+
+Example for ``192.168.4.0/26``:
+
+| Network ID | Subnet Mask | Host ID Range | # of Usable Host | Broadcast ID |
+|---|---|---|---|---|
+| 192.168.4.0 | /26 | 192.168.4.1 - 192.168.4.62 | 62 | 192.168.4.63 |
+| 192.168.4.64 | /26 | 192.168.4.65 - 192.168.4.126 | 62 | 192.168.4.127 |
+| 192.168.4.128 | /26 | 192.168.4.129 - 192.168.4.190 | 62 | 192.168.4.191 |
+| 192.168.4.192 | /26 | 192.168.4.193 - 192.168.4.254 | 62 | 192.168.4.255 |
+
+``192.168.4.0`` and ``192.168.4.256`` are considered unusable addresses since the former is the network ID and the latter is the broadcast ID.
+
 ### Switches ###
 A switch connects multiple devices on a single network which it cannot communicate outside of. They work on OSI layer 2, which is the data link layer, and exchange data based on MAC addresses.
 
