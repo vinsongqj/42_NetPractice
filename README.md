@@ -111,3 +111,4 @@ The .json config files created for each of the 10 levels are required to be incl
 - [QSFPTEK- Router vs Switch, Whats the Difference?](https://youtu.be/AjOyXHWG_x0?si=HCeaQxNtvGws2M7e)
 - [PowerCert Animated Videos - Default Gateway Explained](https://youtu.be/pCcJFdYNamc?si=-hPc9t30WpoEPSrk)
 - [Sunny Classroom - subnetting is simple](https://youtu.be/ecCuyq-Wprc?si=ITWq0Tku3mSKx-LV)
+- [Networks by Sheldon Chong](https://sheldon-chong.notion.site/Networks-d7b0104b35fd4e87bd55edee86235b7e#10c94794c4a48021acfff381d27a0218)
