@@ -61,20 +61,27 @@ Essentially this means that hosts ``192.168.0.1, 192.168.0.2, 192.168.0.3...`` e
 
 Example for ``192.168.4.0/26``:
 
-| Network ID | Subnet Mask | Host ID Range | # of Usable Host | Broadcast ID |
+| Network ID | Subnet Mask | Host ID Range | Number of Usable Hosts | Broadcast ID |
 |---|---|---|---|---|
 | 192.168.4.0 | /26 | 192.168.4.1 - 192.168.4.62 | 62 | 192.168.4.63 |
 | 192.168.4.64 | /26 | 192.168.4.65 - 192.168.4.126 | 62 | 192.168.4.127 |
 | 192.168.4.128 | /26 | 192.168.4.129 - 192.168.4.190 | 62 | 192.168.4.191 |
 | 192.168.4.192 | /26 | 192.168.4.193 - 192.168.4.254 | 62 | 192.168.4.255 |
 
-``192.168.4.0`` and ``192.168.4.256`` are considered unusable addresses since the former is the network ID and the latter is the broadcast ID.
+**Take note**: `0` and `255` are considered unusable addresses since the former is reserved for the network ID and the latter is reserved for the broadcast ID.
 
-### Switches ###
-A switch connects multiple devices on a single network which it cannot communicate outside of. They work on OSI layer 2, which is the data link layer, and exchange data based on MAC addresses.
+**Private networks** - There are certain IPv4 network ranges that are reserved for private/local network use and not to be routed to the public internet:
 
-### Routers ###
-A router is a device that connects two different networks, acting as a gateway for a host on one network to communicate with a host on a separate network. They work on the OSI layer 3, which is the network layer, and forward data based on IP addresses.
+| Class | Range | Subnet Mask | 
+|---|---|---|
+| A | 10.0.0.0 - 10.255.255.255 | 10.0.0.0/8 |
+| B | 172.16.0.0 - 172.31.255.255 | 172.16.0.0/12 | 
+| C | 192.168.0.0 - 192.168.255.255 | 192.168.0.0/16 |
+
+### Switches and Routers ###
+- **Switch** - A switch connects multiple devices on a single network which it cannot communicate outside of. They work on OSI layer 2, which is the data link layer, and exchange data based on Medium Access Control (MAC) addresses (A 48-bit hexadecimal number, often displayed as six groups of two hexadecimal digits separated by colons or hyphens, for example: ``00:1A:2B:3C:4D:5E``)
+- **Router** - A router is a device that connects two different networks, acting as a gateway for a host on one network to communicate with a host on a separate network. They work on the OSI layer 3, which is the network layer, and forward data based on IP addresses.
+- **ARP Request** - An Address Resolution Protocol (ARP) request is the glue that bridges OSI layers 2 and 3 together. IP addresses are used to find devices across local networks and the global internet, but MAC addresses are used to deliver data directly between two physical devices sharing the same local network. ARP is the protocol used to discover a MAC address when you only know the IP address on a local network. It works via the host sending out a request for the MAC address corresponding to the known IP address across the network, and the recipient with the IP will return its MAC address to be stored in the cache for future data transfers.
 
 ### Default gateways ###
 In most cases, a default gateway is the same thing as a router. It connects devices from two different networks, allowing them to communicate with each other. 'Default' just means that when data needs to exit a network, it is the first to be designated device to be looked at.
